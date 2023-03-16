@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.core import serializers
 import json
 from django.views.decorators.csrf import csrf_exempt
+from .services import paciente_services as serv
 
 # Create your views here.
 @csrf_exempt
@@ -34,5 +35,13 @@ def paciente_view(request, pk):
         paciente_dto= pl.delete_paciente(pk)
         paciente = serializers.serialize('json', [paciente_dto,])
         return HttpResponse(paciente, 'application/json')
+
+@csrf_exempt  
+def alta_prioridad():
+    cantidad = serv.get_alta_prioridad()
+    return HttpResponse(cantidad, 'application/json')
+    
+    
+    
 
     

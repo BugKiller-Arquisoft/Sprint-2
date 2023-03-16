@@ -1,3 +1,4 @@
+import imp
 from django.shortcuts import render
 from .models import Paciente
 from .logic import historiaClinica_logic as hcl
@@ -5,7 +6,7 @@ from django.http import HttpResponse
 from django.core import serializers
 import json
 from django.views.decorators.csrf import csrf_exempt
-
+from .services import historiaClinica_services as serv
 # Create your views here.
 @csrf_exempt
 def historiasclinicas_view(request):
@@ -34,3 +35,9 @@ def historiaclinica_view(request, pk):
         historiaclinica_dto= hcl.delete_historiaclinica(pk)
         historiaclinica = serializers.serialize('json', [historiaclinica_dto,])
         return HttpResponse(historiaclinica, 'application/json')
+
+def activas():
+    cantidad = serv.get_hc_Activas
+    return HttpResponse(cantidad, 'application/json')
+    
+    
