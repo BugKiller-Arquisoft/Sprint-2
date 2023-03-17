@@ -2,7 +2,7 @@ from webbrowser import get
 import historiaClinica
 import paciente
 from ..models import HistoriaClinica
-from ...paciente.logic import pacientes_logic as pl
+from paciente.logic import pacientes_logic as pl
 
 def get_historiasclinicas():
     historiasclinicas = HistoriaClinica.objects.all()

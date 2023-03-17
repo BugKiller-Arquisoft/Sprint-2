@@ -1,7 +1,7 @@
 from webbrowser import get
-import historiaClinica
+#import historiaClinica
 from ..models import Paciente
-from ...historiaClinica.logic import historiaClinica_logic as hcl
+#from ...historiaClinica.logic import historiaClinica_logic as hcl
 
 def get_pacientes():
     pacientes = Paciente.objects.all()
@@ -18,13 +18,13 @@ def update_paciente(pa_pk, new_pa):
     paciente.edad= new_pa["edad"]
     paciente.eps = new_pa["eps"]
     paciente.prioridad = new_pa["prioridad"]
-    paciente.historiaclinica = hcl.get_historiaClinica(new_pa["historiaclinica"])
+    #paciente.historiaclinica = hcl.get_historiaClinica(new_pa["historiaclinica"])
     paciente.save()
     return paciente
 
 def create_paciente(pa):
-    paciente = Paciente(id=pa["id"],nombre=pa["nombre"],edad=pa["edad"],eps=pa["eps"],prioridad=pa["prioridad"],
-                        historiaclinica=hcl.get_historiaclinica(pa["historiaclinica"]))
+    paciente = Paciente(id=pa["id"],nombre=pa["nombre"],edad=pa["edad"],eps=pa["eps"],prioridad=pa["prioridad"])#,
+                        #historiaclinica=hcl.get_historiaclinica(pa["historiaclinica"]))
     paciente.save()
     return paciente
 
