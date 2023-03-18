@@ -8,6 +8,13 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from .services import historiaClinica_services as serv
 # Create your views here.
+def hclinica_list(request):
+    historiaclinica = hcl.get_historiaclinica
+    context = {
+        'historiaclinica_list':historiaclinica
+    }
+    return render(request, 'historiaclinica.html',context)
+
 @csrf_exempt
 def historiasclinicas_view(request):
     if request.method == 'GET':
@@ -17,7 +24,7 @@ def historiasclinicas_view(request):
             historiaclinica = serializers.serialize('json', [historiaclinica_dto,])
             return HttpResponse(historiaclinica, 'application/json')
         else:
-            historiasclinicas_dto = hcl.get_historiasclinicas
+            historiasclinicas_dto = hcl.get_historiasclinicas()
             historiasclinicas = serializers.serialize('json', historiasclinicas_dto)
             return HttpResponse(historiasclinicas, 'application/json')       
     if request.method == 'POST':

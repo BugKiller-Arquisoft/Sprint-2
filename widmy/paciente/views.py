@@ -8,6 +8,13 @@ from django.views.decorators.csrf import csrf_exempt
 from .services import paciente_services as serv
 
 # Create your views here.
+def pacientes_list(request):
+    pasientes = pl.get_pacientes()
+    context = {
+        'paciente_list':pasientes
+    }
+    return render(request, 'pacientes.html', context)
+
 @csrf_exempt
 def pacientes_view(request):
     if request.method == 'GET':
