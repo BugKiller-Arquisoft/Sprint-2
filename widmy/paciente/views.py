@@ -6,6 +6,10 @@ from django.core import serializers
 import json
 from django.views.decorators.csrf import csrf_exempt
 from .services import paciente_services as serv
+from .forms import PacienteForm
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 def pacientes_list(request):
@@ -15,6 +19,24 @@ def pacientes_list(request):
     }
     return render(request, 'pacientes.html', context)
 
+def paciente_create(request):
+    if request.method == 'POST':
+        form = PacienteForm(request.POST)
+        if form.is_valid():
+            pl.create_paciente(form)
+            messages.add_message(request, messages.SUCCESS, 'Paciente create successful')
+            return HttpResponseRedirect(reverse('pacienteCreate'))
+        else:
+            print(form.errors)
+    else:
+        form = PacienteForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'pacienteCreate.html', context)
+
+"""""
 @csrf_exempt
 def pacientes_view(request):
     if request.method == 'GET':
@@ -42,7 +64,7 @@ def paciente_view(request, pk):
         paciente_dto= pl.delete_paciente(pk)
         paciente = serializers.serialize('json', [paciente_dto,])
         return HttpResponse(paciente, 'application/json')
-
+"""
 @csrf_exempt  
 def alta_prioridad():
     cantidad = serv.get_alta_prioridad()

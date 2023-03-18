@@ -13,7 +13,7 @@ def get_paciente(pa_pk):
 
 def update_paciente(pa_pk, new_pa):
     paciente = get_paciente(pa_pk)
-    paciente.id = new_pa["id"]
+    #paciente.id = new_pa["id"]
     paciente.nombre = new_pa["nombre"]
     paciente.edad= new_pa["edad"]
     paciente.eps = new_pa["eps"]
@@ -22,11 +22,13 @@ def update_paciente(pa_pk, new_pa):
     paciente.save()
     return paciente
 
-def create_paciente(pa):
-    paciente = Paciente(id=pa["id"],nombre=pa["nombre"],edad=pa["edad"],eps=pa["eps"],prioridad=pa["prioridad"])#,
+def create_paciente(form):
+    paciente = form.save()
+    #paciente = Paciente(#id=pa["id"],
+    #                    nombre=pa["nombre"],edad=int(pa["edad"]),eps=pa["eps"],prioridad=pa["prioridad"])#,
                         #historiaclinica=hcl.get_historiaclinica(pa["historiaclinica"]))
     paciente.save()
-    return paciente
+    return ()
 
 def delete_paciente(pa_pk):
     paciente= get_paciente(pa_pk)

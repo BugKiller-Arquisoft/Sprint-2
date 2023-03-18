@@ -7,6 +7,10 @@ from django.core import serializers
 import json
 from django.views.decorators.csrf import csrf_exempt
 from .services import historiaClinica_services as serv
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 # Create your views here.
 def hclinica_list(request):
     historiaclinica = hcl.get_historiaclinica
@@ -14,6 +18,7 @@ def hclinica_list(request):
         'historiaclinica_list':historiaclinica
     }
     return render(request, 'historiaclinica.html',context)
+
 
 @csrf_exempt
 def historiasclinicas_view(request):
