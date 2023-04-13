@@ -12,26 +12,22 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 # Create your views here.
+"""
 def hclinica_list(request):
     historiaclinica = hcl.get_historiaclinica
     context = {
         'historiaclinica_list':historiaclinica
     }
     return render(request, 'historiaclinica.html',context)
+"""
 
 
 @csrf_exempt
 def historiasclinicas_view(request):
     if request.method == 'GET':
-        id = request.GET.get("id", None)
-        if id:
-            historiaclinica_dto = hcl.get_historiaclinica(id)
-            historiaclinica = serializers.serialize('json', [historiaclinica_dto,])
-            return HttpResponse(historiaclinica, 'application/json')
-        else:
-            historiasclinicas_dto = hcl.get_historiasclinicas()
-            historiasclinicas = serializers.serialize('json', historiasclinicas_dto)
-            return HttpResponse(historiasclinicas, 'application/json')       
+        historiasclinicas_dto = hcl.get_historiasclinicas()
+        historiasclinicas = serializers.serialize('json', historiasclinicas_dto)
+        return HttpResponse(historiasclinicas, 'application/json')       
     if request.method == 'POST':
         historiaclinica_dto = hcl.create_historiaclinica(json.loads(request.body))
         historiaclinica = serializers.serialize('json', [historiaclinica_dto,])
@@ -39,6 +35,10 @@ def historiasclinicas_view(request):
     
 @csrf_exempt
 def historiaclinica_view(request, pk):
+    if request.method == 'GET':  
+        historiaclinica_dto = hcl.get_historiaclinica(pk)
+        historiaclinica = serializers.serialize('json', [historiaclinica_dto,])
+        return HttpResponse(historiaclinica, 'application/json') 
     if request.method == 'PUT':
         historiaclinica_dto = hcl.udpdate_historiaclinica(pk, json.loads(request.body))
         historiaclinica = serializers.serialize('json', [historiaclinica_dto,])
@@ -47,9 +47,10 @@ def historiaclinica_view(request, pk):
         historiaclinica_dto= hcl.delete_historiaclinica(pk)
         historiaclinica = serializers.serialize('json', [historiaclinica_dto,])
         return HttpResponse(historiaclinica, 'application/json')
-
-def activas():
-    cantidad = serv.get_hc_Activas
+    
+@csrf_exempt
+def activas(request):
+    cantidad = hcl.get_activas()
     return HttpResponse(cantidad, 'application/json')
     
     

@@ -2,6 +2,7 @@ from webbrowser import get
 import historiaClinica
 import paciente
 from ..models import HistoriaClinica
+from paciente.models import Paciente
 from paciente.logic import pacientes_logic as pl
 
 def get_historiasclinicas():
@@ -30,3 +31,7 @@ def delete_historiaclinica(hcl_pk):
     historiaclinica = get_historiaclinica(hcl_pk)
     historiaclinica.delete()
     return historiaclinica
+
+def get_activas():
+    activas = HistoriaClinica.objects.count()
+    return activas
