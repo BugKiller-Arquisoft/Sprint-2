@@ -64,11 +64,7 @@ def paciente_view(request, pk):
         paciente = serializers.serialize('json', [paciente_dto,])
         return HttpResponse(paciente, 'application/json')
 
-@csrf_exempt  
-def alta_prioridad(request):
-    cantidad = serv.get_alta_prioridad()
-    return HttpResponse(cantidad, 'application/json')
-    
+
     
     
 

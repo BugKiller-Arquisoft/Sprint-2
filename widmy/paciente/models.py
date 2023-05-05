@@ -1,3 +1,5 @@
+
+from datetime import datetime
 from django.db import models
 
 #from historiaClinica.models import historiaClinica
@@ -5,12 +7,15 @@ from django.db import models
 # Create your models here.
 
 class Paciente(models.Model):
-    #id = models.IntegerField()
-    nombre = models.CharField(max_length=50)
-    edad = models.IntegerField()
-    eps = models.CharField(max_length=50)
-    prioridad= models.CharField(max_length=50)
-    #historiaclinica = models.OneToOneField(historiaClinica,default= None)
+    nombre = models.CharField(null=True, blank=True,default=None, max_length=100)
+    fechaNacimiento = models.DateField(null=True,default =datetime.now, blank=True)
+    rH=models.CharField(null=True, blank=True,default=None, max_length=10)
+    tipoDocumento = models.CharField(null=True, blank=True,default=None, max_length=10)
+    documentoDeIdentidad = models.CharField(null=True, blank=True,default=None, max_length=50)
+    eps =models.CharField(null=True, blank=True,default=None, max_length=50)
+    ciudadResidencia=models.CharField(null=True, blank=True,default=None, max_length=100)   
+    
+    
     
     
     

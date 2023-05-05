@@ -6,16 +6,20 @@ class PacienteForm(forms.ModelForm):
         model = Paciente
         fields = [
             'nombre',
-            'edad',
-            'eps',
-            'prioridad',
+            'fechaNacimiento',
+            'rH',
+            'tipoDocumento',
+            'documentoDeIdentidad',
+            'eps','ciudadResidencia'
             #'dateTime',
         ]
 
         labels = {
             'nombre' : 'Nombre',
-            'edad' : 'Edad',
+            'fechaNacimiento' : 'FechaNacimiento',
+            'rH':'Rh',
+            'tipoDocumento':'TipoDocumento',
+            'documentoDeIdentidad':'DocumentoDeIdentidad',
             'eps' : 'Eps',
-            'prioridad' : 'Prioridad',
             #'dateTime' : 'Date Time',
         }

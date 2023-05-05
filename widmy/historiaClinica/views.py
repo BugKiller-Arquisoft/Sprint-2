@@ -52,5 +52,10 @@ def historiaclinica_view(request, pk):
 def activas(request):
     cantidad = hcl.get_activas()
     return HttpResponse(cantidad, 'application/json')
+
+@csrf_exempt  
+def alta_prioridad(request):
+    cantidad = hcl.get_alta_prioridad()
+    return HttpResponse(cantidad, 'application/json')
     
     

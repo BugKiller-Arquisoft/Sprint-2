@@ -9,4 +9,4 @@ urlpatterns = [
     
     path('', views.pacientes_view, name='pacientes_view'),
     path('<int:pk>', views.paciente_view, name='paciente_view'),
-    path('altaprioridad',views.alta_prioridad, name='alta_prioridad')]
+   ]

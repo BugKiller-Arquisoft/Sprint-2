@@ -33,5 +33,18 @@ def delete_historiaclinica(hcl_pk):
     return historiaclinica
 
 def get_activas():
-    activas = HistoriaClinica.objects.count()
-    return activas
+    
+    contador=0
+    hclinicas = get_historiasclinicas()
+    for hclinica in hclinicas:
+        if hclinica.activa == True:
+            contador+=1
+    return contador
+
+def get_alta_prioridad():
+    contador = 0
+    hclinicas = get_historiasclinicas()
+    for historiaclinica in hclinicas:
+        if historiaclinica.prioridad == 'Alta':
+            contador+=1
+    return contador
