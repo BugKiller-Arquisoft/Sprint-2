@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-zwah-s)!i3%z#j@g$j8gc8)ffb#(ijp#q@pzpx5y&j1)t=4i#6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'paciente',
-    'historiaClinica'
+    'historiaClinica',
+    'social_django'
 ]
 
 MIDDLEWARE = [
@@ -78,12 +79,12 @@ WSGI_APPLICATION = 'widmy.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'name_db',
-        'USER': 'user_db',
-        'PASSWORD': 'user_password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'widmy',
+        'USER': 'bugkiller',
+        'PASSWORD': 'isis2503',
+        'HOST': '10.128.0.2',
+        'PORT': '5432',
     }
 }
 
@@ -140,12 +141,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = "/login/auth0" 
 LOGIN_REDIRECT_URL = "/" 
-LOGOUT_REDIRECT_URL = "https://isis2503-ivan-alfonso.auth0.com/v2/logout?returnTo=http%3A%2F%2Fip_publica_instancia:8080" 
+LOGOUT_REDIRECT_URL = "https://widmy-group5.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F104.155.178.10:8080" 
 
 SOCIAL_AUTH_TRAILING_SLASH = False # Remove end slash from routes 
-SOCIAL_AUTH_AUTH0_DOMAIN = 'isis2503-ivan-alfonso.auth0.com' 
-SOCIAL_AUTH_AUTH0_KEY = 'W8g5KLG4s2ogftLqVDrGwd3xD7JafO0S' 
-SOCIAL_AUTH_AUTH0_SECRET = '7MVp47TDXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' 
+SOCIAL_AUTH_AUTH0_DOMAIN = 'widmy-group5.us.auth0.com' 
+SOCIAL_AUTH_AUTH0_KEY = 'fFzYg4h0P69xAM0neNJ8RqVNiC89ma7E' 
+SOCIAL_AUTH_AUTH0_SECRET = 'yI4e_Xi_hd4rzXzxrv_jxoEnP_Lw9H8Ep8LVL4L7-NsW0c5PzCW0NmFTC3EXfnNC' 
 
 SOCIAL_AUTH_AUTH0_SCOPE = [ 'openid', 'profile','email','role', ] 
-AUTHENTICATION_BACKENDS = { 'monitoring.auth0backend.Auth0', 'django.contrib.auth.backends.ModelBackend', }
+AUTHENTICATION_BACKENDS = { 'widmy.auth0backend.Auth0', 'django.contrib.auth.backends.ModelBackend', }

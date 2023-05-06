@@ -10,6 +10,8 @@ from .services import historiaClinica_services as serv
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from widmy.auth0backend import getRole
 
 # Create your views here.
 """
@@ -23,15 +25,20 @@ def hclinica_list(request):
 
 
 @csrf_exempt
+@login_required
 def historiasclinicas_view(request):
-    if request.method == 'GET':
-        historiasclinicas_dto = hcl.get_historiasclinicas()
-        historiasclinicas = serializers.serialize('json', historiasclinicas_dto)
-        return HttpResponse(historiasclinicas, 'application/json')       
-    if request.method == 'POST':
-        historiaclinica_dto = hcl.create_historiaclinica(json.loads(request.body))
-        historiaclinica = serializers.serialize('json', [historiaclinica_dto,])
-        return HttpResponse(historiaclinica, 'application/json')  
+    role = getRole(request)
+    if role == "Doctor":
+        if request.method == 'GET':
+            historiasclinicas_dto = hcl.get_historiasclinicas()
+            historiasclinicas = serializers.serialize('json', historiasclinicas_dto)
+            return HttpResponse(historiasclinicas, 'application/json')       
+        if request.method == 'POST':
+            historiaclinica_dto = hcl.create_historiaclinica(json.loads(request.body))
+            historiaclinica = serializers.serialize('json', [historiaclinica_dto,])
+            return HttpResponse(historiaclinica, 'application/json')
+    else:
+        return HttpResponse("Usted no salva vidas")
     
 @csrf_exempt
 def historiaclinica_view(request, pk):
