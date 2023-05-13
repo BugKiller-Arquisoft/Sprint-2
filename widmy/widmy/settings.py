@@ -79,12 +79,12 @@ WSGI_APPLICATION = 'widmy.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'name_db',
-        'USER': 'user_db',
-        'PASSWORD': 'user_password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'widmy',
+        'USER': 'bugkiller',
+        'PASSWORD': 'isis2503',
+        'HOST': '10.128.0.2',
+        'PORT': '5432',
     }
 }
 
@@ -140,7 +140,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = "/login/auth0" 
 LOGIN_REDIRECT_URL = "/" 
-LOGOUT_REDIRECT_URL = "https://widmy-group5.us.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost:8080" 
+LOGOUT_REDIRECT_URL = "https://widmy-group5.us.auth0.com/v2/logout?returnTo=http%3A%2F%34.123.225.15:8080" 
 
 SOCIAL_AUTH_TRAILING_SLASH = False # Remove end slash from routes 
 SOCIAL_AUTH_AUTH0_DOMAIN = 'widmy-group5.us.auth0.com' 
