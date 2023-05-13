@@ -18,10 +18,7 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    #path('',views.index),
-    path('pacientes/', include('paciente.urls')),
-    path('hclinicas/', include('historiaClinica.urls')),
+    path('',views.index),
     path(r'', include('django.contrib.auth.urls')),
     path(r'', include('social_django.urls')),
 ]
