@@ -22,6 +22,5 @@ urlpatterns = [
     #path('',views.index),
     path('pacientes/', include('paciente.urls')),
     path('hclinicas/', include('historiaClinica.urls')),
-    path(r'', include('django.contrib.auth.urls')),
-    path(r'', include('social_django.urls')),
+    path('adendas/', include('adenda.urls')),
 ]
